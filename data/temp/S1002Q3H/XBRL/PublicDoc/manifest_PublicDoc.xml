@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://disclosure.edinet-fsa.go.jp/2013/manifest">
+  <tocComposition>
+    <title xml:lang="ja">提出本文書</title>
+    <title xml:lang="en">Main Document</title>
+    <item ref="jpcrp040300" extrole="http://disclosure.edinet-fsa.go.jp/role/jpcrp/rol_CabinetOfficeOrdinanceOnDisclosureOfCorporateInformationEtcFormNo43QuarterlySecuritiesReport" in="presentation" />
+  </tocComposition>
+  <list>
+    <instance id="jpcrp040300" type="PublicDoc" preferredFilename="jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08.xbrl">
+      <ixbrl>0000000_header_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0101010_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0102010_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0103010_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104000_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104010_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104020_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104035_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104100_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0104110_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+      <ixbrl>0201010_honbun_jpcrp040300-q1r-001_E00097-000_2014-06-30_01_2014-08-08_ixbrl.htm</ixbrl>
+    </instance>
+  </list>
+</manifest>

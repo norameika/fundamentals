@@ -1,0 +1,79 @@
+<FinancialStatements>
+<InstanceCount>1</InstanceCount>
+<InstanceInformation>
+<InstanceFileName>jpfr-q3r-E00097-000-2013-12-31-01-2014-02-13</InstanceFileName>
+<StatementInformation>
+<StatementID>ConsolidatedQuarterlyBSConsolidatedQuarterlyFinancialStatements</StatementID>
+<FileName>0104010_0739947502601</FileName>
+<Language>ja</Language>
+<Header>
+<HeaderValue>１【四半期連結財務諸表】</HeaderValue>
+<HeaderValue>(1)【四半期連結貸借対照表】</HeaderValue>
+<HeaderValue />
+<HeaderValue />
+</Header>
+<ColumnName>
+<ColumnValue>前連結会計年度</ColumnValue>
+<ColumnValue>(平成25年３月31日)</ColumnValue>
+</ColumnName>
+<ColumnName>
+<ColumnValue>当第３四半期連結会計期間</ColumnValue>
+<ColumnValue>(平成25年12月31日)</ColumnValue>
+</ColumnName>
+<DecimalScale>(単位：百万円)</DecimalScale>
+<SplitMaxSize>40</SplitMaxSize>
+<SplitMinSize>30</SplitMinSize>
+<SplitDepth>1</SplitDepth>
+</StatementInformation>
+<StatementInformation>
+<StatementID>ConsolidatedQuarterlyPLYTDConsolidatedQuarterlyFinancialStatements</StatementID>
+<FileName>0104020_0739947502601</FileName>
+<Language>ja</Language>
+<Header>
+<HeaderValue />
+<HeaderValue>&#160;(2)【四半期連結損益計算書及び四半期連結包括利益計算書】</HeaderValue>
+<HeaderValue>&#160;&#160;【四半期連結損益計算書】</HeaderValue>
+<HeaderValue>【第３四半期連結累計期間】</HeaderValue>
+</Header>
+<ColumnName>
+<ColumnValue>前第３四半期連結累計期間</ColumnValue>
+<ColumnValue>(自&#160;平成24年４月１日</ColumnValue>
+<ColumnValue>　至&#160;平成24年12月31日)</ColumnValue>
+</ColumnName>
+<ColumnName>
+<ColumnValue>当第３四半期連結累計期間</ColumnValue>
+<ColumnValue>(自&#160;平成25年４月１日</ColumnValue>
+<ColumnValue>　至&#160;平成25年12月31日)</ColumnValue>
+</ColumnName>
+<DecimalScale>(単位：百万円)</DecimalScale>
+<SplitMaxSize>45</SplitMaxSize>
+<SplitMinSize>30</SplitMinSize>
+<SplitDepth>1</SplitDepth>
+</StatementInformation>
+<StatementInformation>
+<StatementID>ConsolidatedQuarterlyCIYTDConsolidatedQuarterlyFinancialStatements</StatementID>
+<FileName>0104025_0739947502601</FileName>
+<Language>ja</Language>
+<Header>
+<HeaderValue />
+<HeaderValue />
+<HeaderValue>&#160;&#160;【四半期連結包括利益計算書】</HeaderValue>
+<HeaderValue>【第３四半期連結累計期間】</HeaderValue>
+</Header>
+<ColumnName>
+<ColumnValue>前第３四半期連結累計期間</ColumnValue>
+<ColumnValue>(自&#160;平成24年４月１日</ColumnValue>
+<ColumnValue>　至&#160;平成24年12月31日)</ColumnValue>
+</ColumnName>
+<ColumnName>
+<ColumnValue>当第３四半期連結累計期間</ColumnValue>
+<ColumnValue>(自&#160;平成25年４月１日</ColumnValue>
+<ColumnValue>　至&#160;平成25年12月31日)</ColumnValue>
+</ColumnName>
+<DecimalScale>(単位：百万円)</DecimalScale>
+<SplitMaxSize>40</SplitMaxSize>
+<SplitMinSize>30</SplitMinSize>
+<SplitDepth>1</SplitDepth>
+</StatementInformation>
+</InstanceInformation>
+</FinancialStatements>

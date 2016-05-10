@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Edited with XiRUTE .NET Library 01-04 -->
+<link:linkbase xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:link="http://www.xbrl.org/2003/linkbase">
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleCNSBalanceSheets" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/BalanceSheets" />
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleCNSStatementsOfCashFlows" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/StatementsOfCashFlows" />
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleCNSStatementsOfIncome" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/StatementsOfIncome" />
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/BalanceSheets">
+<link:loc xlink:type="locator" xlink:href="jpfr-q2r-E00097-000-2013-09-30-01-2013-11-11.xsd#jpfr-q2r-E00097-000_AdvancesReceivedOnUmcompletedConstructionContractsAndOtherCNS" xlink:label="jpfr-q2r-E00097-000_AdvancesReceivedOnUmcompletedConstructionContractsAndOtherCNS" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_CurrentLiabilitiesAbstract" xlink:label="jpfr-t-cte_CurrentLiabilitiesAbstract" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_CurrentLiabilitiesAbstract" xlink:to="jpfr-q2r-E00097-000_AdvancesReceivedOnUmcompletedConstructionContractsAndOtherCNS" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/StatementsOfIncome">
+<link:loc xlink:type="locator" xlink:href="jpfr-q2r-E00097-000-2013-09-30-01-2013-11-11.xsd#jpfr-q2r-E00097-000_APatentEnforcementIncomeNOI" xlink:label="jpfr-q2r-E00097-000_APatentEnforcementIncomeNOI" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_NonOperatingIncomeAbstract" xlink:label="jpfr-t-cte_NonOperatingIncomeAbstract" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_NonOperatingIncomeAbstract" xlink:to="jpfr-q2r-E00097-000_APatentEnforcementIncomeNOI" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/cns/role/StatementsOfCashFlows">
+<link:loc xlink:type="locator" xlink:href="jpfr-q2r-E00097-000-2013-09-30-01-2013-11-11.xsd#jpfr-q2r-E00097-000_ProceedsFromRedemptionOfMembershipInvCF" xlink:label="jpfr-q2r-E00097-000_ProceedsFromRedemptionOfMembershipInvCF" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" xlink:label="jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" />
+<link:loc xlink:type="locator" xlink:href="jpfr-q2r-E00097-000-2013-09-30-01-2013-11-11.xsd#jpfr-q2r-E00097-000_IncreaseDecreaseInAdvancesReceivedOnUmcompletedConstractsAndOtherOpeCF" xlink:label="jpfr-q2r-E00097-000_IncreaseDecreaseInAdvancesReceivedOnUmcompletedConstractsAndOtherOpeCF" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_NetCashProvidedByUsedInInvestmentActivitiesAbstract" xlink:label="jpfr-t-cte_NetCashProvidedByUsedInInvestmentActivitiesAbstract" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_NetCashProvidedByUsedInInvestmentActivitiesAbstract" xlink:to="jpfr-q2r-E00097-000_ProceedsFromRedemptionOfMembershipInvCF" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="1" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" xlink:to="jpfr-q2r-E00097-000_IncreaseDecreaseInAdvancesReceivedOnUmcompletedConstractsAndOtherOpeCF" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+</link:linkbase>
