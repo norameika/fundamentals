@@ -19,7 +19,7 @@ import os
 import zipfile
 import pysftp
 import re
-import shutil
+import shutil   
 pd.set_option('display.width', 1000)
 
 UPLOAD_PATH = '/home/yoshiharuyonai/www/karasu/db/temp'
@@ -146,7 +146,7 @@ def fetch_stock(stock_code, date):
 def update_stock():
     sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
     sftp.chdir(UPLOAD_PATH)
-    date = datetime.date(2010, 1, 1)
+    date = datetime.date(2016, 1, 1)
     cnt = 0
     while not date == datetime.date.today() + datetime.timedelta(days=1):
         print date,
