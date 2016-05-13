@@ -1,6 +1,12 @@
 ,EdinetID,Identification,IsDownloaded,Datetime,URL
+<<<<<<< HEAD
 0,E02272,S1006TJK,0,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S1006TJK&amp;lgKbn=2&/E01EW/download?1462603952015
 1,E02272,S10067UU,0,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S10067UU&amp;lgKbn=2&/E01EW/download?1462603952015
 2,E02272,S1005L10,0,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S1005L10&amp;lgKbn=2&/E01EW/download?1462603952015
 3,E02272,S10058JF,0,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S10058JF&amp;lgKbn=2&/E01EW/download?1462603952015
 4,E02272,S1003YY6,0,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S1003YY6&amp;lgKbn=2&/E01EW/download?1462603952015
+=======
+0,E02272,S1006TJK,1,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S1006TJK&amp;lgKbn=2&/E01EW/download?1462603952015
+1,E05625,S1007GIZ,1,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S1007GIZ&amp;lgKbn=2&/E01EW/download?1463095258026
+2,E05625,S10077J7,1,na,https://disclosure.edinet-fsa.go.jp/E01EW/download?uji.verb=W0EZA104CXP001006BLogic&uji.bean=ee.bean.parent.EECommonSearchBean&no=S10077J7&amp;lgKbn=2&/E01EW/download?1463095258026
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26

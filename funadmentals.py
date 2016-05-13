@@ -3,13 +3,13 @@
 # Script Name   : financials.py
 # Author        : Yoshi Yonai
 # Created       : 2016 0508
-# Last Modified : 
+# Last Modified :
 # Version       : 1.0
 # Modifications : 
 
 # Description   : financial findamentals analysis
 
-from xbrl import XBRLParser
+from bs4 import BeautifulSoup
 from urllib2 import HTTPError
 import urllib
 import urllib2
@@ -17,9 +17,12 @@ import datetime
 import pandas as pd
 import os
 import zipfile
-import pysftp
+# import pysftp
 import re
 import shutil
+
+
+import pylab as plt
 pd.set_option('display.width', 1000)
 
 UPLOAD_PATH = '/home/yoshiharuyonai/www/karasu/db/temp'
@@ -27,13 +30,46 @@ HOST = 'norameika.com'
 USER = 'yoshiharuyonai'
 PASSWORD = 'sb6xgts348'
 
-# class FinWorks():
-#     def __init__(self, edinet_id):
-#         self.edinet_id = edinet_id
-#         self.id
+
+class Fundamentals():
+    def __init__(self, df, chart_type='line'):
+        self.df = df.sort(columns='DateOrdinary')
+        self.legend = df.columns[2:]
+        self.chart_type = chart_type
+
+    def visualize(self):
+        c = chart()
+        data = [[self.df.ix[:, 1].values, self.df.ix[:, col].values] for col in self.legend]
+        if self.chart_type == 'line':
+            c.scatter(data, legend=self.legend)
+        c.draw()
 
 
-class XbrlParser(XBRLParser):
+class CorpFundamental(Fundamentals):
+    def __init__(self, edinet_id):
+        self.edinet_id = edinet_id
+        self.is_listed, self.is_consolidated, self.name, self.secur_code = self.set_parameters()
+        self.is_listed = int(self.is_listed is 'Listed company')
+        self.is_consolidated = int(self.is_consolidated is 'Consolidated')
+        self.secur_code = str(int(self.secur_code))[:-1] + '-T'
+        self.describe()
+        Fundamentals.__init__(self, self.fetch_stock())
+
+    def set_parameters(self):
+        df = pd.read_csv('./id_list/EdinetcodeDlInfo.csv', skiprows=1)
+        return df[df['EDINET Code'] == self.edinet_id].ix[:, ['Listed company / Unlisted company',
+                                                              'Consolidated / NonConsolidated',
+                                                              'Submitter Name',
+                                                              'Securities Identification Code']].values[0]
+
+    def fetch_stock(self):
+        return fetch_stock(self.secur_code, (2013, 1, 1)).ix[:, ['Date', 'DateOrdinary', 'Close', 'Low', 'High']]
+
+    def describe(self):
+        print self.edinet_id, self.secur_code, self.is_listed, self.is_consolidated
+
+
+class XbrlParser():
     def __init__(self, fp, src):
         self.fp = fp
         self.src = src
@@ -42,12 +78,12 @@ class XbrlParser(XBRLParser):
         self.id = self.set_id()
 
     def set_id(self):
-        xbrl = XBRLParser.parse(open(self.fp, 'r'))
+        xbrl = self.parse(self.fp)
         namespace = 'xbrli:identifier'
         return xbrl.find(name=re.compile(namespace)).string.split('-')[0]
 
     def set_contexts(self):
-        xbrl = XBRLParser.parse(open(self.fp, 'r'))
+        xbrl = self.parse(self.fp)
         namespace = 'xbrli:context'
         for node in xbrl.find_all(name=re.compile(namespace)):
             if 'NonConsolidated' in node.attrs['id']:
@@ -63,17 +99,23 @@ class XbrlParser(XBRLParser):
                 edate = node.find('xbrli:enddate').string
                 self.contexts.update({node.attrs['id']: ['Duration', '%s:%s' % (sdate, edate), consoli]})
             elif 'Instant' in node.attrs['id']:
+<<<<<<< HEAD:finworks.py
                 if not node.find('xbrli:instant'):
                     print node
                     continue
                 self.contexts.update({node.attrs['id']: ['Instant', node.find('xbrli:instant').string, consoli]})
+=======
+                if not node.find('xbrli:instant'): continue
+                self.contexts.update({node.attrs['id']: ['Instant', '%s' % node.find('xbrli:instant').string, consoli]})
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
 
     def parse_xbrl(self, fp):
         # parse xbrl file
         out = list()
-        xbrl = XBRLParser.parse(open(self.fp, 'r'))
+        xbrl = self.parse(self.fp)
         name_space = 'jp*'
         for node in xbrl.find_all(name=re.compile(name_space + ':*')):
+<<<<<<< HEAD:finworks.py
             if (node.string is None): continue
             if not node.string.isdigit(): continue
             try:
@@ -97,17 +139,35 @@ class XbrlParser(XBRLParser):
 
     def export(self):
         pd.DataFrame(out, columns=['EdinetID', 'Term', 'Value', 'Context', 'Type', 'PeriodOrInstant', 'IsConsolidated', 'Src']).to_csv(fp)
+=======
+            if node.string is None: continue
+            if not node.string.isdigit(): continue
+            date = self.contexts[node.attrs['contextref']][1].split(':')[-1]
+            y, m, d = map(int, date.split('-'))
+            date_ord = datetime.date.toordinal(datetime.date(y, m, d))
+            out.append([date, date_ord, self.id, node.name.split(':')[-1], node.string] + [node.attrs['contextref']] + self.contexts[node.attrs['contextref']] + [self.src])
+        pd.DataFrame(out, columns=['Date', 'DateOrdinary', 'EdinetID', 'Term', 'Value', 'Context', 'Type', 'PeriodOrInstant', 'IsConsolidated', 'Src']).to_csv(fp)
+
+    def parse(self, fp):
+        soup = BeautifulSoup(open(fp, 'r'))
+        return soup
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
 
 
 def update_xbrl(edinet_id):
     # sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
     # sftp.chdir(UPLOAD_PATH)
     # xbrllink_download(edinet_id)
+<<<<<<< HEAD:finworks.py
+=======
+    urlmap = dict()
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
     df = pd.read_csv('./data/xbrl_download_hist.csv', index_col=0)
-    for [edinet_id, identification, is_downloaded, datatime, url] in df.values:
+    for cnt, [edinet_id, identification, is_downloaded, datatime, url] in enumerate(df.values):
         if not is_downloaded:
-            download_file(url, './data/temp')
+            fnames = download_file(url, './data/temp')
             print url, "downloaded"
+<<<<<<< HEAD:finworks.py
             # for root, dirs, files in os.walk('./data/temp'):
             #     for file in files:
             #         if '.xbrl' in file and 'AditDoc' not in root:
@@ -115,16 +175,31 @@ def update_xbrl(edinet_id):
             #             xbrl = XbrlParser(fp, url)
             #             xbrl.parse_xbrl('./data/%s.csv' % file.split('.')[0])
                     # sftp.put('./data/temp/%s' % file)
+=======
+            for f in fnames:
+                urlmap.update({f: url})
+            df.ix[cnt, 'IsDownloaded'] = 1
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
     for root, dirs, files in os.walk('./data/temp'):
         for file in files:
             if '.xbrl' in file and 'AuditDoc' not in root:
                 fp = root + '/' + file
+<<<<<<< HEAD:finworks.py
                 print fp, root
                 xbrl = XbrlParser(fp, root)
                 xbrl.parse_xbrl('./data/temp/%s.csv' % file.split('.')[0])
                 # sftp.put('./data/temp/%s' % file)
     # shutil.rmtree('./data/temp')
     # sftp.close()
+=======
+                xbrl = XbrlParser(fp, urlmap[re.split('/|\\\\', root)[3]])
+                # print xbrl.set_id()
+                xbrl.parse_xbrl('./data/%s.csv' % file.split('.')[0])
+                # sftp.put('./data/temp/%s' % file)
+    shutil.rmtree('./data/temp')
+    # sftp.close()
+    df.to_csv('./data/xbrl_download_hist.csv')
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
 
 
 def xbrllink_download(edinet_id):
@@ -216,23 +291,102 @@ def update_stock():
 
 def unzip(src, fp):
     zf = zipfile.ZipFile(src, 'r')
+    out = list()
     for f in zf.namelist():
         if not os.path.exists(fp + '/' + os.path.dirname(f)):
             os.makedirs(fp + '/' + os.path.dirname(f))
         uzf = file(fp + '/' + f, 'w')
         uzf.write(zf.read(f))
         uzf.close()
+        out.append(f)
+    return set([i.split('/')[0] for i in out])
 
 
 def download_file(url, fp):
     if not os.path.exists(fp):
         os.makedirs(fp)
     urllib.urlretrieve(url, './data/temp.zip')
-    unzip('./data/temp.zip', fp)
+    return unzip('./data/temp.zip', fp)
+
+
+class chart:
+    def __init__(self, x=1, y=1, ws=0.1, **kwargs):
+        self.colors = ('#2980b9', '#e74c3c', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22', '#bc8f8f', '#2c3e50')
+        if 'aspect_ratio' in kwargs.keys():
+            aspect_ratio = kwargs['aspect']
+        else:
+            aspect_ratio = (16, 9)
+        self.fig = plt.figure(figsize=aspect_ratio, dpi=100, facecolor='w', edgecolor='k')
+        self.axis = list()
+        self.x = x
+        self.y = y
+
+        for i in range(x * y):
+            if 'd3' in kwargs.keys():
+                if i in kwargs['d3']:
+                    self.axis.append(self.fig.add_subplot(y, x, i + 1, axisbg='white', projection='3d'))
+            else:
+                self.axis.append(self.fig.add_subplot(y, x, i + 1, axisbg='white'))
+            self.fig.subplots_adjust(wspace=0.2)
+            self.fig.subplots_adjust(hspace=0.4)
+
+    def set_xlim(self, xrange, axisid=0):
+        axis = self.axis[axisid]
+        axis.set_xlim(xrange)
+
+    def set_ylim(self, yrange, axisid=0):
+        axis = self.axis[axisid]
+        axis.set_ylim(xrange)
+
+    def scatter(self, data, axis_id=0, maker='-o', ms=7, color=0, lw=0.77, alpha=1, *args, **kwargs):
+        ax = self.axis[axis_id]
+        if 'twinx' in kwargs.keys():
+            ax = ax.twinx()
+        if 'fs' in kwargs.keys():
+            fs = kwargs['fs']
+        else:
+            fs = 13
+        if 'title' in kwargs.keys():
+            ax.set_title(kwargs['title'])
+        if 'xlabel' in kwargs.keys():
+            ax.set_xlabel(kwargs['xlabel'])
+        if 'ylabel' in kwargs.keys():
+            ax.set_ylabel(kwargs['ylabel'])
+
+        if 'legend' not in kwargs.keys():
+            label = range(len(data))
+        else:
+            label = kwargs['legend']
+        for d, c, l in zip(data, self.colors, label):
+            ax.plot(d[0], d[1], maker, ms=ms, color=c, alpha=alpha, linewidth=lw, label=l)
+
+        if 'xtick' in kwargs.keys():
+            if 'rot' in kwargs.keys():
+                rot = kwargs['rot']
+            else:
+                rot = 0
+            xtick = kwargs['xtick']
+            ax.xaxis.set_ticks(data[0][0])
+            ax.set_xticklabels(xtick, rotation=rot)
+
+        if 'legend' in kwargs.keys():
+            if 'loc' in kwargs.keys():
+                ax.legend(fontsize=fs, loc=kwargs['loc'])
+            else:
+                ax.legend(fontsize=fs, loc='lower left')
+
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(fs)
+
+    def draw(self):
+        # plt.tight_layout()
+        plt.show()
+
 
 if __name__ == '__main__':
     # update_stock()
     # print fetch_stock('1721-T', (2013, 1, 1))
+<<<<<<< HEAD:finworks.py
     # update_xbrl('E00097')
     for f in os.listdir(r'C:\Users\Yoshi\Documents\script\karasu\data\test\S10058JF\XBRL\PublicDoc'):
         if '.xbrl' in f:
@@ -241,3 +395,9 @@ if __name__ == '__main__':
             xbrl = XbrlParser(fp, '')
             # for k, v in xbrl.contexts.items(): print k, v
             xbrl.parse_xbrl(os.getcwd())
+=======
+    # update_xbrl('E05625')
+    CorpFundamental('E05625').visualize()
+
+
+>>>>>>> f53dfd6641a767b15994b21a39cee28f51a27c26:funadmentals.py
