@@ -19,13 +19,13 @@ import os
 import zipfile
 import pysftp
 import re
-import shutil   
+import shutil
 pd.set_option('display.width', 1000)
 
 UPLOAD_PATH = '/home/yoshiharuyonai/www/karasu/db/temp'
 HOST = 'norameika.com'
-USER = ''
-PASSWORD = ''
+USER = 'yoshiharuyonai'
+PASSWORD = 'sb6xgts348'
 
 # class FinWorks():
 #     def __init__(self, edinet_id):
@@ -63,7 +63,9 @@ class XbrlParser(XBRLParser):
                 edate = node.find('xbrli:enddate').string
                 self.contexts.update({node.attrs['id']: ['Duration', '%s:%s' % (sdate, edate), consoli]})
             elif 'Instant' in node.attrs['id']:
-                if not node.find('xbrli:instant'): continue
+                if not node.find('xbrli:instant'):
+                    print node
+                    continue
                 self.contexts.update({node.attrs['id']: ['Instant', node.find('xbrli:instant').string, consoli]})
 
     def parse_xbrl(self, fp):
@@ -72,31 +74,57 @@ class XbrlParser(XBRLParser):
         xbrl = XBRLParser.parse(open(self.fp, 'r'))
         name_space = 'jp*'
         for node in xbrl.find_all(name=re.compile(name_space + ':*')):
-            if not node.string: continue
+            if (node.string is None): continue
             if not node.string.isdigit(): continue
-            out.append([self.id, node.name.split(':')[-1], node.string] + [node.attrs['contextref']] + self.contexts[node.attrs['contextref']] + [self.src])
+            try:
+                out.append([self.id, node.name.split(':')[-1], node.string] + [node.attrs['contextref']] + self.contexts[node.attrs['contextref']] + [self.src])
+            except:
+                print 'skipped', node.atter
+        print len(out)
+
+    def test(self):
+        xbrl = XBRLParser.parse(open(self.fp, 'r'))
+        name_space = 'jp*'
+        c = 0
+        for node in xbrl.find_all(name=re.compile(name_space + ':*')):
+            if not(node.string is None):
+                c += 1
+        print c
+
+    def describe(self):
+        print 'ID:', self.id
+        print 'Contexts:', self.contexts
+
+    def export(self):
         pd.DataFrame(out, columns=['EdinetID', 'Term', 'Value', 'Context', 'Type', 'PeriodOrInstant', 'IsConsolidated', 'Src']).to_csv(fp)
 
 
 def update_xbrl(edinet_id):
-    sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
-    sftp.chdir(UPLOAD_PATH)
-    xbrllink_download(edinet_id)
+    # sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
+    # sftp.chdir(UPLOAD_PATH)
+    # xbrllink_download(edinet_id)
     df = pd.read_csv('./data/xbrl_download_hist.csv', index_col=0)
     for [edinet_id, identification, is_downloaded, datatime, url] in df.values:
         if not is_downloaded:
             download_file(url, './data/temp')
             print url, "downloaded"
+            # for root, dirs, files in os.walk('./data/temp'):
+            #     for file in files:
+            #         if '.xbrl' in file and 'AditDoc' not in root:
+            #             fp = root + '/' + file
+            #             xbrl = XbrlParser(fp, url)
+            #             xbrl.parse_xbrl('./data/%s.csv' % file.split('.')[0])
+                    # sftp.put('./data/temp/%s' % file)
     for root, dirs, files in os.walk('./data/temp'):
         for file in files:
             if '.xbrl' in file and 'AuditDoc' not in root:
                 fp = root + '/' + file
-                print fp
-                xbrl = XbrlParser(fp, url)
+                print fp, root
+                xbrl = XbrlParser(fp, root)
                 xbrl.parse_xbrl('./data/temp/%s.csv' % file.split('.')[0])
                 # sftp.put('./data/temp/%s' % file)
     # shutil.rmtree('./data/temp')
-    sftp.close()
+    # sftp.close()
 
 
 def xbrllink_download(edinet_id):
@@ -153,9 +181,13 @@ def update_stock():
         if not'%s.csv' % str(date) in os.listdir('./data/stock'):
             query = 'http://k-db.com/stocks/%s?download=csv' % str(date)
             urllib.urlretrieve(query, './data/stock/%s.csv' % str(date))
-            sftp.put('./data/stock/%s.csv' % str(date))
-            print 'done'
-            cnt += 1
+            if os.stat('./data/stock/%s.csv' % str(date)).st_size > 0:
+                sftp.put('./data/stock/%s.csv' % str(date))
+                print 'done'
+                cnt += 1
+            else:
+                os.remove('./data/stock/%s.csv' % str(date))
+                print 'empty file removed'
         else:
             print 'skip'
         if cnt == 10:
@@ -201,6 +233,11 @@ def download_file(url, fp):
 if __name__ == '__main__':
     # update_stock()
     # print fetch_stock('1721-T', (2013, 1, 1))
-    update_xbrl('E00097')
-
-
+    # update_xbrl('E00097')
+    for f in os.listdir(r'C:\Users\Yoshi\Documents\script\karasu\data\test\S10058JF\XBRL\PublicDoc'):
+        if '.xbrl' in f:
+            print f
+            fp = r'C:\Users\Yoshi\Documents\script\karasu\data\test\S10058JF\XBRL\PublicDoc\\' + f
+            xbrl = XbrlParser(fp, '')
+            # for k, v in xbrl.contexts.items(): print k, v
+            xbrl.parse_xbrl(os.getcwd())
