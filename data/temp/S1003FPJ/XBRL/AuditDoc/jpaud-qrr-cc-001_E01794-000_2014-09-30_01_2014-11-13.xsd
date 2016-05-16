@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<!-- Edited with XiRUTE .NET Library 01-05 -->
+<schema xmlns:jpaud-qrr-cc_E01794-000="http://disclosure.edinet-fsa.go.jp/jpaud/qrr/cc/001/E01794-000/2014-09-30/01/2014-11-13" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified" targetNamespace="http://disclosure.edinet-fsa.go.jp/jpaud/qrr/cc/001/E01794-000/2014-09-30/01/2014-11-13" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/jpcrp_cor_2013-08-31.xsd" namespace="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/jpcrp_cor" />
+  <import schemaLocation="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/jpcrp_rt_2013-08-31.xsd" namespace="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/jpcrp_rt" />
+  <annotation>
+    <appinfo>
+      <link:linkbaseRef xlink:type="simple" xlink:href="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/label/jpcrp_2013-08-31_lab.xml" xlink:role="http://www.xbrl.org/2003/role/labelLinkbaseRef" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" />
+      <link:linkbaseRef xlink:type="simple" xlink:href="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/label/jpcrp_2013-08-31_lab-en.xml" xlink:role="http://www.xbrl.org/2003/role/labelLinkbaseRef" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" />
+      <link:linkbaseRef xlink:type="simple" xlink:href="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2013-08-31/label/jpcrp_2013-08-31_gla.xml" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" />
+      <link:linkbaseRef xlink:type="simple" xlink:href="jpaud-qrr-cc-001_E01794-000_2014-09-30_01_2014-11-13_pre.xml" xlink:role="http://www.xbrl.org/2003/role/presentationLinkbaseRef" xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase" />
+    </appinfo>
+  </annotation>
+</schema>
