@@ -1,12 +1,10 @@
 # coding:utf-8
 
-# Script Name   : financials.py
+# Script Name   : fundamentals.py
 # Author        : Yoshi Yonai
 # Created       : 2016 0508
-# Last Modified :
+# Last Modified : 2016 0513
 # Version       : 1.0
-# Modifications : 
-
 # Description   : financial findamentals analysis
 
 from bs4 import BeautifulSoup
@@ -101,7 +99,6 @@ class XbrlParser():
                 self.contexts.update({node.attrs['id']: ['Instant', '%s' % node.find('xbrli:instant').string, consoli]})
 
     def parse_xbrl(self, fp):
-        # parse xbrl file
         out = list()
         xbrl = self.parse(self.fp)
         name_space = 'jp*'
@@ -120,9 +117,9 @@ class XbrlParser():
 
 
 def update_xbrl(edinet_id):
-    # sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
-    # sftp.chdir(UPLOAD_PATH)
-    # xbrllink_download(edinet_id)
+    sftp = pysftp.Connection(HOST, username=USER, password=PASSWORD)
+    sftp.chdir(UPLOAD_PATH)
+    xbrllink_download(edinet_id)
     urlmap = dict()
     df = pd.read_csv('./data/xbrl_download_hist.csv', index_col=0)
     for cnt, [edinet_id, identification, is_downloaded, datatime, url] in enumerate(df.values):
@@ -137,11 +134,10 @@ def update_xbrl(edinet_id):
             if '.xbrl' in file and 'AuditDoc' not in root:
                 fp = root + '/' + file
                 xbrl = XbrlParser(fp, urlmap[re.split('/|\\\\', root)[3]])
-                # print xbrl.set_id()
                 xbrl.parse_xbrl('./data/%s.csv' % file.split('.')[0])
-                # sftp.put('./data/temp/%s' % file)
+                sftp.put('./data/temp/%s' % file)
     shutil.rmtree('./data/temp')
-    # sftp.close()
+    sftp.close()
     df.to_csv('./data/xbrl_download_hist.csv')
 
 
@@ -326,6 +322,6 @@ if __name__ == '__main__':
     # update_stock()
     # print fetch_stock('1721-T', (2013, 1, 1))
     # update_xbrl('E05625')
-    CorpFundamental('E05625').visualize()
-
-
+    # CorpFundamental('E05625').visualize()
+    a = XbrlParser(r'jpcrp040300-q3r-001_E02271-000_2015-12-31_01_2016-02-04.xbrl', '')
+    a.parse_xbrl('.temp_.csv')
