@@ -22,8 +22,8 @@ import shutil
 import pylab as plt
 pd.set_option('display.width', 1000)
 
-UPLOAD_PATH = '/home/yoshiharuyonai/www/karasu/db/temp'
-HOST = 'norameika.com'
+UPLOAD_PATH = ''
+HOST = ''
 USER = ''
 PASSWORD = ''
 
