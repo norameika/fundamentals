@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Edited with XiRUTE .NET Library 01-04 -->
+<link:linkbase xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:link="http://www.xbrl.org/2003/linkbase">
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleBalanceSheets" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/BalanceSheets" />
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleStatementsOfCashFlows" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/StatementsOfCashFlows" />
+<link:roleRef xlink:type="simple" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/o/rt/2013-03-01/jpfr-rt-2013-03-01.xsd#RoleStatementsOfIncome" roleURI="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/StatementsOfIncome" />
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/StatementsOfIncome">
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_InsuranceIncomeForDisasterEI" xlink:label="jpfr-q3r-E01794-000_InsuranceIncomeForDisasterEI" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_OtherComprehensiveIncomeAbstract" xlink:label="jpfr-t-cte_OtherComprehensiveIncomeAbstract" />
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_LossOnDisaterEL" xlink:label="jpfr-q3r-E01794-000_LossOnDisaterEL" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_ExtraordinaryIncomeAbstract" xlink:label="jpfr-t-cte_ExtraordinaryIncomeAbstract" />
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiaryOCI" xlink:label="jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiaryOCI" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_ExtraordinaryLossAbstract" xlink:label="jpfr-t-cte_ExtraordinaryLossAbstract" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_ExtraordinaryLossAbstract" xlink:to="jpfr-q3r-E01794-000_LossOnDisaterEL" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_ExtraordinaryIncomeAbstract" xlink:to="jpfr-q3r-E01794-000_InsuranceIncomeForDisasterEI" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_OtherComprehensiveIncomeAbstract" xlink:to="jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiaryOCI" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/BalanceSheets">
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_AllowanceRestructuringCosts" xlink:label="jpfr-q3r-E01794-000_AllowanceRestructuringCosts" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_CurrentLiabilitiesAbstract" xlink:label="jpfr-t-cte_CurrentLiabilitiesAbstract" />
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_ValuationAndTranslationAdjustmentsAbstract" xlink:label="jpfr-t-cte_ValuationAndTranslationAdjustmentsAbstract" />
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiary" xlink:label="jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiary" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_ValuationAndTranslationAdjustmentsAbstract" xlink:to="jpfr-q3r-E01794-000_PensionAdjustmentsRecognizedByAnOverseasConsolidatedSubsidiary" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_CurrentLiabilitiesAbstract" xlink:to="jpfr-q3r-E01794-000_AllowanceRestructuringCosts" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+<link:definitionLink xlink:type="extended" xlink:role="http://info.edinet-fsa.go.jp/jp/fr/gaap/role/StatementsOfCashFlows">
+<link:loc xlink:type="locator" xlink:href="http://info.edinet-fsa.go.jp/jp/fr/gaap/t/cte/2013-03-01/jpfr-t-cte-2013-03-01.xsd#jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" xlink:label="jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" />
+<link:loc xlink:type="locator" xlink:href="jpfr-q3r-E01794-000-2013-12-31-01-2014-02-13.xsd#jpfr-q3r-E01794-000_IncreaseDecreaseInProvisionForRestructuringCostsOpeCF" xlink:label="jpfr-q3r-E01794-000_IncreaseDecreaseInProvisionForRestructuringCostsOpeCF" />
+<link:definitionArc xlink:type="arc" xlink:from="jpfr-t-cte_NetCashProvidedByUsedInOperatingActivitiesAbstract" xlink:to="jpfr-q3r-E01794-000_IncreaseDecreaseInProvisionForRestructuringCostsOpeCF" xlink:arcrole="http://www.xbrl.org/2003/arcrole/general-special" order="0.5" />
+</link:definitionLink>
+</link:linkbase>
