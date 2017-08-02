@@ -1,9 +1,9 @@
 # coding:utf-8
 
 # Script Name   : fundamentals.py
-# Author        : Yoshi Yonai
+# Author        : YY
 # Created       : 2016 0508
-# Last Modified : 2016 0515
+# Last Modified : 2017 0802
 # Modifications : 
 
 # Description   : financial findamentals analysis
@@ -16,7 +16,6 @@ import datetime
 import pandas as pd
 import os
 import zipfile
-# import pysftp
 import re
 import shutil
 from utils import *
@@ -354,18 +353,4 @@ def test():
     out.to_csv('terms_.csv')
 
 if __name__ == '__main__':
-    # pass
-    # fetch_fundamentals('E01084', (2010, 1, 1))[1].to_csv('E01084.csv')
-    # update_xbrl_all()
-    # update_stock()
-    # print fetch_stock('1721-T', (2013, 1, 1))
-    # update_xbrl('E00279')
-    # update_xbrl'E00187')
-    # CorpFundamental('E05625').visualize()
-    # fp = r'C:\Users\yyonai\Documents\Xbrl_Search_20160517_111158\jpcrp040300-q3r-001_E01084-000_2015-12-31_01_2016-02-12.xbrl'
-    # xbrl = XbrlParser(fp, '')
-    # xbrl.parse('temp.csv')
-    aaa = FundamentalCo('E00041')
-    aaa.fetch_fundamental('number_of_employees')
-    aaa.visualize()
-    # aaa.describe()
+    pass
