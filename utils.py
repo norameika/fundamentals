@@ -75,8 +75,7 @@ class chart:
         self.canvas.draw()
 
     def scatter(self, data, axis_id=0, maker='-o', lw=0.77, alpha=1, *args, **kwargs):
-        ax = self.axis[axis_id]
-        if 'twinx' in kwargs.keys():
+        ax = self.axis[axis_id]        if 'twinx' in kwargs.keys():
             ax = ax.twinx()
         if 'fs' in kwargs.keys():
             fs = kwargs['fs']
